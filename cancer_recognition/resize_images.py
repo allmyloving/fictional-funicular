@@ -7,10 +7,9 @@ IMAGES_PATH = 'D:/uni/cancer_data/'
 RESIZED_IMAGES_PATH = 'D:/uni/cancer_data/resized/'
 
 
-
 def resize_all():
-    target_image_width = 170
-    target_image_height = 128
+    target_image_width = 85
+    target_image_height = 64
 
     if not os.path.exists(RESIZED_IMAGES_PATH):
         os.mkdir(RESIZED_IMAGES_PATH)
@@ -20,7 +19,7 @@ def resize_all():
         if extension == '.jpg':
             im = Image.open(IMAGES_PATH + '\\' + file).convert('L')
             enhancer = ImageEnhance.Contrast(im)
-            im = enhancer.enhance(8.0)
+            im = enhancer.enhance(6.0)
             imResize = im.resize((target_image_width, target_image_height), Image.ANTIALIAS)
             imResize.save(RESIZED_IMAGES_PATH + '\\' + file, 'JPEG', quality=90)
 

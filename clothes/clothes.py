@@ -50,47 +50,47 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 print(type(train_images))
-print(type(train_images[0]))
-print(type(train_labels))
 train_images = train_images / 255.0
+print(train_images[0])
 print(train_labels)
 test_images = test_images / 255.0
-#
-# # plt.figure(figsize=(10,10))
-# # for i in range(25, 50):
-# #     plt.subplot(5,5,i-25+1)
-# #     plt.xticks([])
-# #     plt.yticks([])
-# #     plt.grid(False)
-# #     plt.imshow(train_images[i], cmap=plt.cm.binary)
-# #     plt.xlabel(class_names[train_labels[i]])
-# # plt.show()
-#
-# model = keras.Sequential([
-#     keras.layers.Flatten(input_shape=(28, 28)),
-#     keras.layers.Dense(128, activation=tf.nn.relu),
-#     keras.layers.Dense(10, activation=tf.nn.softmax)
-# ])
-# model.compile(optimizer='adam',
-#               loss='sparse_categorical_crossentropy',
-#               metrics=['accuracy'])
-# model.fit(train_images, train_labels, epochs=5)
-#
-# # predictions  = model.predict(test_images)
-# #
-# # # Plot the first X test images, their predicted label, and the true label
-# # # Color correct predictions in blue, incorrect predictions in red
-# # num_rows = 5
-# # num_cols = 3
-# # num_images = num_rows*num_cols
-# # plt.figure(figsize=(2*2*num_cols, 2*num_rows))
-# # for i in range(num_images):
-# #   plt.subplot(num_rows, 2*num_cols, 2*i+1)
-# #   plot_image(i, predictions, test_labels, test_images)
-# #   plt.subplot(num_rows, 2*num_cols, 2*i+2)
-# #   plot_value_array(i, predictions, test_labels)
-# # plt.show()
-#
+
+# plt.figure(figsize=(10,10))
+# for i in range(25, 50):
+#     plt.subplot(5,5,i-25+1)
+#     plt.xticks([])
+#     plt.yticks([])
+#     plt.grid(False)
+#     plt.imshow(train_images[i], cmap=plt.cm.binary)
+#     plt.xlabel(class_names[train_labels[i]])
+# plt.show()
+
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28, 28)),
+    keras.layers.Dense(128, activation=tf.nn.relu),
+    keras.layers.Dense(10, activation=tf.nn.softmax)
+])
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(train_images, train_labels, epochs=5)
+
+predictions = model.predict(test_images)
+print(predictions[:10])
+
+# Plot the first X test images, their predicted label, and the true label
+# Color correct predictions in blue, incorrect predictions in red
+num_rows = 5
+num_cols = 3
+num_images = num_rows*num_cols
+plt.figure(figsize=(2*2*num_cols, 2*num_rows))
+for i in range(num_images):
+  plt.subplot(num_rows, 2*num_cols, 2*i+1)
+  plot_image(i, predictions, test_labels, test_images)
+  plt.subplot(num_rows, 2*num_cols, 2*i+2)
+  plot_value_array(i, predictions, test_labels)
+plt.show()
+
 # sock = imread("sock.png", flatten=True)
 # print(sock.shape)
 #
