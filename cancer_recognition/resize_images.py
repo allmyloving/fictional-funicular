@@ -1,11 +1,11 @@
 import json
 import os
+
 from PIL import Image, ImageEnhance
 from scipy.misc import imread
 
 IMAGES_PATH = 'D:/uni/cancer_data/'
 RESIZED_IMAGES_PATH = 'D:/uni/cancer_data/resized/'
-
 
 def resize_all():
     target_image_width = 85
@@ -22,6 +22,7 @@ def resize_all():
             im = enhancer.enhance(6.0)
             imResize = im.resize((target_image_width, target_image_height), Image.ANTIALIAS)
             imResize.save(RESIZED_IMAGES_PATH + '\\' + file, 'JPEG', quality=90)
+    return target_image_width, target_image_height
 
 
 def get_diagnosis(filename):
